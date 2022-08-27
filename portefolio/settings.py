@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-lpirfjzer&yqu-kx#w==13zq(vfgm1p0l0x6(bm4qielff6%3z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tech-hexa.heroku.com']
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 # Application definition
