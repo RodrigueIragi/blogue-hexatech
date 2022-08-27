@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 p-5">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger text-center">
+            <span>{{ message }}</span>
+        </div>
+        {%endfor%}
+        {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card">
+                    <div class="card-header text-center">
+                        <i class="fas fa-user-lock"></i>Creation de compte hex-tech
+                    </div>
+
+                    <div class="card-body">
+                        {{form}}
+                    </div>
+                        <br>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-block">Creation</button>
+                    </div><br>
+                    <p class="card-text mt-2">Vous avez déjà un compte ? <a href="{% url 'login'%}">Connexion</a></p>
+                    <br>
+                    <br>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

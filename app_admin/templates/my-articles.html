@@ -1,0 +1,46 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Mes articles</h2>
+        </div>
+        <div class="col-md-12">
+            <a href="{% url 'ajouter-article' %}" class="btn btn-primary float-right"><i class="fas -fa-plus">Ajouter articles</i></a>
+        </div>
+        <div class="col-md-12">
+            {% if list_articles %}
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="h3">Titre</th>
+                        <th class="h3">Description</th>
+                        <th class="h3">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for article in list_articles %}
+                    <tr>
+                    <td class="h3"><a href="">{{ article.title }}</a></td>
+                    <td class="h3"><a href="">{{ article.desc }}</a></td>
+                    <td><a href="{% url 'update-article' article.pk %}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i>Editer</a></td>
+                    <td><a href="{% url 'delete-article' article.pk %}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Supprimer</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="card mt-2">
+                <div class="card-body">
+                    
+                </div>
+            </div>
+            
+            {% else %}
+            <p class="card-text">Vous n'avez aucun article </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

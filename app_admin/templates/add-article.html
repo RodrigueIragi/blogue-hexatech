@@ -1,0 +1,21 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <br>
+        <div class="col-md-12">
+           <h2 class="text-center">Ajouter des articles</h2>
+           <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p|safe}}
+            {{form.media|safe}}
+            <br>
+            <button class="btn btn-info">Enregistrer</button>
+           </form>
+           <br>
+           <br>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,142 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div>
+                <h1 class="text-center mt-3">Details des articles</h1>
+                <img src="{{ article.image.url }}" style="max-width: 600px;" alt="">
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.desc }}</p>
+            </div>
+			<div class="">
+
+				<div id="comments">	
+					<h3 class="comments-title">
+                        {% with comments.count as total_comments %}
+                    
+                        {{ total_comments }} commentaire{{total_comments|pluralize}}
+
+                        {% endwith %}
+                    </h3>
+					<br>
+                    
+					<ol class="comments-list">
+                        {% for comment in comments %}
+                        
+                        
+						<li class="comment">
+							<div>
+								<img src="{% static 'assets/images/avatar_woman.png' %}" alt="Avatar" class="avatar">
+								
+								<div class="comment-meta">
+									<span class="author"><a href="#">#{{ forloop.counter}} {{comment.name_post}}</a></span>
+									<span class="date"><a href="#">{{ comment.created_at }}</a></span>
+									<span class="reply"><a href="#"></a></span>
+								</div><!-- .comment-meta -->
+
+								<div class="comment-body">
+									{{ comment.content }}
+                                </div><!-- .comment-body -->
+							</div>
+						</li>
+                        {% endfor %}
+					</ol>
+					
+					<div class="clearfix"></div>
+
+					<nav id="comment-nav-below" class="comment-navigation clearfix" role="navigation"><div class="nav-content">
+							<div class="nav-previous">&larr; Older Comments</div>
+							<div class="nav-next">Newer Comments &rarr;</div>
+					</div></nav><!-- #comment-nav-below -->
+
+
+					<!-- <div id="respond">
+						<h3 id="reply-title">Leave a Reply</h3>
+						<form action="" method="post" id="commentform" class="">
+							<div class="form-group">
+								<label for="inputName">Name</label>
+								<input type="text" class="form-control" id="inputName" placeholder="Enter your name">
+							</div>
+							<div class="form-group">
+								<label for="inputEmail">Email address <i class="text-danger">*</i></label>
+								<input type="email" class="form-control" id="inputEmail" placeholder="Enter your email">
+							</div>
+							<div class="form-group">
+								<label for="inputWeb">Website</label>
+								<input type="nane" class="form-control" id="inputWeb" placeholder="http://">
+							</div>
+							<div class="form-group">
+								<label for="inputComment">Comment</label>
+								<textarea class="form-control" rows="6"></textarea>
+							</div>
+							<div class="row">
+								<div class="col-md-8">
+									<div class="checkbox">
+										<label> <input type="checkbox"> Subscribe to updates</label>
+									</div>
+								</div>
+								<div class="col-md-4 text-right">
+  									<button type="submit" class="btn btn-action">Submit</button>
+								</div>
+						</form>
+					</div> /respond -->
+				</div>
+			</div>
+	 <!-- /row comments -->
+            <div>
+                {% if new_comment %} 
+                <div class="alert alert-success" role="alert">
+                    Votre commentaire est ajouté !
+                </div>
+               
+                {% else %}
+                <h4>Ajouter votre nouveau commentaire</h4>
+                    
+                <form action="" method="POST">
+                    {% csrf_token %}
+                   
+                    {{comment_form.as_p}}
+                    <button class="btn btn-primary">Commenter</button>
+                </form>
+        
+                {% endif %}
+            </div>
+            
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="text-center mt-3">Article en relation</h3>
+            <div class="row">
+                {% for item in aer %}
+                {% if item.id != article.id %}
+                <div class="col-md-7 mb-2">
+                    {% if item.image != "http://default" %}
+                    
+                    <a href="{% url 'detail' article.id %}">
+                        <img src="{{item.image.url}}" alt="card-img-top" style="max-width: 160px;">
+                    </a>
+                    {% else %}
+                    <a href="{% url 'detail' article.id %}">
+                        <img src="https://th.bing.com/th/id/OIP.xosjExMD08GLQjE6hqJvggHaEo?w=249&h=180&c=7&r=0&o=5&pid=1.7" class="card-img-top" alt="" style="max-width: 160px;">
+                    </a>
+                    {% endif %}
+                </div>
+                
+                <div class="col-md-5 mb-2">
+                    {{ item.title }}
+                    <p><a href="{% url 'detail' article.id %}">Description</a></p>
+                </div>
+                {% endif %}
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+    <br><br>
+</div>
+{% endblock %}

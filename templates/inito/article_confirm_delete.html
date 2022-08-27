@@ -1,0 +1,19 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <form action="" method="POST">
+
+            {% csrf_token %}
+            <p>Voullez-vous supprimer cet article ?  ({{object}})</p>
+            <input type="submit" value="Supprimer" class="btn btn-danger">
+            <a href="{% url 'my-articles' %}" class="btn btn-primary">Retour </a>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+{% endblock %}

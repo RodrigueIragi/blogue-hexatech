@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<br>
+<div class="container m-5">
+    <div class="row">
+        
+        <button type="button" class="btn btn-dark"><a href="{% url 'logout_user' %}">Deconnection</a></button>
+        {% if has_perm %}
+        <button type="button" class="btn btn-info"><a href="{% url 'dashboard' %}">Administration</a></button>
+        {% endif %}
+    </div>
+</div>
+<br>
+<br>
+{% endblock %}

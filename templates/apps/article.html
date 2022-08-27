@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="text-center">Les articles le plus pertirnent </h1>
+<div class="container">
+<div class="row">
+    {% for article in list_articles %}
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+      <a class="thumbnail" href="{% url 'detail' article.id %}">
+        <span class="img">
+         
+          {% if article.image == "http://default" %}
+          <img src="https://th.bing.com/th/id/OIP.xosjExMD08GLQjE6hqJvggHaEo?w=249&h=180&c=7&r=0&o=5&pid=1.7" class="card-img-top" alt="card-img-top">
+          {% else %}
+          <img src="{{ article.image.url }}" class="card-img-top" alt="card-img-top">
+          {% endif %}
+          <span class="cover"><span class="more">Developper&rarr;</span></span>
+        </span>
+        <span class="title">{{ article.title }}</span>
+      </a>
+      <span class="details"><a href="{% url 'detail' article.id %}">{{ article.desc|truncatewords:8 }}</a> | <a href="{% url 'detail' article.id %}">Publié il y'a {{ article.created_at | timesince }}</a></span>
+      <h4></h4>
+      <p></p>
+    </div>
+    <!-- <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+      
+      <div class="card">
+        {% if article.image == "http://default" %}
+        <img src="https://th.bing.com/th/id/OIP.xosjExMD08GLQjE6hqJvggHaEo?w=249&h=180&c=7&r=0&o=5&pid=1.7" class="card-img-top" alt="">
+        {% else %}
+        <img src="{{ article.image.url }}" class="card-img-top" alt="">
+        {% endif %}
+        <div class="card-body" style="height: 200px;">
+          <h5 class="card-title"><a href="{% url 'detail' article.id %}">{{ article.title }}</a></h5>
+          <p class="card-text">{{ article.desc|truncatewords:8 }}</p>
+          <p class="card-text">Publié il y'a {{ article.created_at | timesince }}</p>
+          <a href="{% url 'detail' article.id %}" class="btn btn-primary">Developper</a>
+        </div>
+      </div>
+    </div> -->
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}
