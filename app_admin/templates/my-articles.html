@@ -23,8 +23,8 @@
                 <tbody>
                     {% for article in list_articles %}
                     <tr>
-                    <td class="h3"><a href="">{{ article.title }}</a></td>
-                    <td class="h3"><a href="">{{ article.desc }}</a></td>
+                    <td class="h3"><a href="">{{ article.titletrunc|safe }}</a></td>
+                    <td class="h3"><a href="">{{ article.desc|safe|truncatewords:8 }}</a></td>
                     <td><a href="{% url 'update-article' article.pk %}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i>Editer</a></td>
                     <td><a href="{% url 'delete-article' article.pk %}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Supprimer</a></td>
                     </tr>
