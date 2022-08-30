@@ -4,9 +4,9 @@ from .settings import *
 
 DATABASES['default'] = dj_database_url.config()
 
-DEBUG = False
+# DEBUG = False
 
-TEMPLATE_DEBUG = False
+# TEMPLATE_DEBUG = False
 
 
 ALLOWED_HOSTS = ['blogue-hexagone-tech.herokuapp.com']
@@ -16,7 +16,7 @@ MIDDLEWARE += ['whitenoise.middleware.WhiteNoiseMiddleware']
 
 
 
-LOGGING = {
+# LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
