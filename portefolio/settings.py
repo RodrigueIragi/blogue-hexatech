@@ -33,7 +33,7 @@ def get_env_variable(var_name, default_value=None):
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRET_KEY = get_env_variable('SECRET_KEY', 'django-insecure-lpirfjzer&yqu-kx#w==13zq(vfgm1p0l0x6(bm4qielff6%3z')
+SECRET_KEY = 'django-insecure-lpirfjzer&yqu-kx#w==13zq(vfgm1p0l0x6(bm4qielff6%3z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,6 +44,7 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -60,6 +61,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -152,3 +154,5 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_URL = "login"
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
