@@ -38,13 +38,13 @@ SECRET_KEY = 'django-insecure-lpirfjzer&yqu-kx#w==13zq(vfgm1p0l0x6(bm4qielff6%3z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['blogue-tech-hexa.herokuapp.com', '127.0.0.1']
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 # Application definition
 
 INSTALLED_APPS = [
-    #'whitenoise.runserver_nostatic',
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
