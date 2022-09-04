@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+import dj_database_url
+import django_heroku
+
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 
@@ -36,7 +39,7 @@ def get_env_variable(var_name, default_value=None):
 SECRET_KEY = 'django-insecure-lpirfjzer&yqu-kx#w==13zq(vfgm1p0l0x6(bm4qielff6%3z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['blogue-hexagone-tech.herokuapp.com', '127.0.0.1']
 
@@ -95,10 +98,7 @@ WSGI_APPLICATION = 'portefolio.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config()
 }
 
 
@@ -151,3 +151,4 @@ STATIC_ROOT = STATIC_ROOT = BASE_DIR / "staticfiles"
 # STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+django_heroku.settings(locals())
